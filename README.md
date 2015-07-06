@@ -1,29 +1,30 @@
-GrisDemo
-====
-
-This is a Grape + Rack ([Gris](http://github.com/dylanfareed/gris)) hypermedia API service.
+## Gris Demo
 
 
-Set-Up for Development
----
+Example Rack, Grape, Roar, ActiveRecord Hypermedia API service - Generated with [Gris  0.3.4](https://github.com/artsy/gris).
 
-- Fork this repo
-- Clone your fork locally
-- Bundle
-```
-cd your-fork-directory
-bundle
-```
-- `DATABASE_NAME` and `PERMITTED_TOKENS` are required environment variables. Prior to executing rake tasks, running the gris console or booting the application, set up your environment by doing **one** of the following:
-  * Use [Dotenv](https://github.com/bkeepers/dotenv)—copy `.env.example` to `.env` and `.env.test` and modify it where appropriate
-  * Export the minimum required environment variables `DATABASE_NAME` and `PERMITTED_TOKENS`
-- Set up the database
-```
-DATABASE_NAME= PERMITTED_TOKENS= bundle exec rake db:create
-DATABASE_NAME= PERMITTED_TOKENS= bundle exec rake db:migrate
-```
-- Verify that [Rubocop](https://github.com/bbatsov/rubocop) and specs pass.
-```
-DATABASE_NAME= PERMITTED_TOKENS= bundle exec rake
-```
+### How this app was generated
 
+1. Generate the new Gris app ([commit](https://github.com/artsy/gris-demo/commit/06c6500e1244f09956ec3ef8c707d964e7ae1abe)) -
+`gris new GrisDemo`
+
+2. Generate an endpoint ([commit](https://github.com/artsy/gris-demo/commit/ac1c51a54947e2fc90d8db78a911eff7fed53be6)) -
+`cd GrisDemo`
+`bundle`
+`gris generate api person`
+
+3. Generate a migration for the newly generated model ([commit](https://github.com/artsy/gris-demo/commit/70bbdd5380095e1523e42b08a56a0fc252b7e1dd)) -
+`gris generate migration createPeople name:string`
+
+4. Update presenter, endpoint and specs ([commit](https://github.com/artsy/gris-demo/commit/6e4e1d6cad4c57f231b7d6a1d493da010d784c02)) -
+`bundle exec rake db:create RACK_ENV=test`
+`bundle exec rake db:migrate RACK_ENV=test`
+`bundle exec rake`
+
+At this point, [RuboCop](https://github.com/bbatsov/rubocop) and API client specs via (Hyperclient)[https://github.com/codegram/hyperclient] should pass. You can run the app in development thusly:
+
+`bundle exec rake db:create`
+`bundle exec rake db:migrate`
+`shotgun`
+
+This new app should now be up and running at the default for shotgun - http://localhost:9393/
