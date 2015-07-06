@@ -11,6 +11,20 @@ module RootPresenter
 
   # Additional endpoint links
 
+  link :people do |opts|
+    {
+      href: "#{base_url(opts)}/people{?page,size}",
+      templated: true
+    }
+  end
+
+  link :person do |opts|
+    {
+      href: "#{base_url(opts)}/people/{id}",
+      templated: true
+    }
+  end
+
   private
 
   def base_url(opts)
