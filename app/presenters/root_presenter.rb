@@ -6,5 +6,7 @@ module RootPresenter
   end
 
   # Additional endpoint links
+
+  resource_links :person
   endpoint_link :health
 end
