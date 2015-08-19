@@ -18,6 +18,7 @@ class PeopleEndpoint < Grape::API
         #
         # requires :name, type: String
         # optional :category, type: String
+        requires :name, type: String
       end
     end
     post do
@@ -42,6 +43,7 @@ class PeopleEndpoint < Grape::API
         #
         # requires :name, type: String
         # optional :category, type: String
+        requires :name, type: String
       end
     end
     patch ':id' do

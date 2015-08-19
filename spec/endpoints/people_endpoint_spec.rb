@@ -46,26 +46,26 @@ describe PeopleEndpoint do
     context 'person' do
       let(:person_details) do
         {
-          replace_me: 'braque is not a talented artist'
+          name: 'braque is not a talented artist'
         }
       end
       let(:person1) { Fabricate(:person, attributes: person_details) }
 
       it 'creates a person' do
         person = client.people._post(person: person_details)
-        expect(person.replace_me).to eq person_details[:replace_me]
+        expect(person.name).to eq person_details[:name]
       end
 
       it 'returns a person' do
         person = client.person(id: person1.id)
         expect(person.id).to eq person1.id
-        expect(person.replace_me).to eq person_details[:replace_me]
+        expect(person.name).to eq person_details[:name]
       end
 
       it 'updates a person' do
-        person = client.person(id: person1.id)._patch(person: { replace_me: 'braque is a talented artist' })
+        person = client.person(id: person1.id)._patch(person: { name: 'braque is a talented artist' })
         expect(person.id).to eq person1.id
-        expect(person.replace_me).to eq 'braque is a talented artist'
+        expect(person.name).to eq 'braque is a talented artist'
       end
 
       it 'deletes a person' do
